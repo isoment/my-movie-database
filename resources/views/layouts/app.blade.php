@@ -15,10 +15,10 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-gray-100 h-screen antialiased leading-none">
+<body class="h-screen antialiased leading-none font-sans">
     <div id="app">
-        <nav class="bg-primary-blue-dark shadow mb-8 py-2">
-            <div class="container mx-auto px-6">
+        <nav class="bg-primary-blue-dark shadow py-2">
+            <div class="container mx-auto px-8">
                 <div class="flex items-center justify-center">
                     <div class="mr-6">
                         <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">

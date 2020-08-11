@@ -4,6 +4,9 @@ module.exports = {
     './resources/css/**/*.css',
   ],
   theme: {
+    fontFamily: {
+      'mulish': ['Mulish']
+    },
     extend: {
       colors: {
         'primary-blue-dark': '#24305E',
