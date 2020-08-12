@@ -38097,6 +38097,11 @@ video {
   background-size: cover;
 }
 
+.index-movie-card {
+  min-width: 150px;
+  max-width: 150px;
+}
+
 @media (min-width: 640px){
   .sm\:container{
     width: 100%;
