@@ -38102,6 +38102,16 @@ video {
   max-width: 150px;
 }
 
+.chevron-more {
+  margin-top: 2px;
+}
+
+.gold-gradient {
+  background: -webkit-linear-gradient(#F8E9A1, #F76C6C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 @media (min-width: 640px){
   .sm\:container{
     width: 100%;
