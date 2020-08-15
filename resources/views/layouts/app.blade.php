@@ -24,7 +24,7 @@
 
                     <div class="mr-6 flex items-center">
                         <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
-                            <img src="/img/logo.svg" alt="logo" class="h-12">
+                            <img src="/img/logo.svg" alt="logo" class="h-10">
                         </a>
                     </div>
 
@@ -36,24 +36,31 @@
                         </svg>
                     </div>
 
-                    <div id="main-nav" class="w-full flex-grow sm:flex items-center sm:w-auto hidden">
-                        <div class="text-sm sm:flex-grow mt-4 md:mt-0">
-                            <a href="#" class="block sm:inline-block mt-2 md:mt-0 text-white font-semibold text-sm ml-4">
+                    <div id="main-nav" class="w-full flex-grow sm:flex items-center sm:w-auto hidden pb-4 sm:pb-0">
+                        <div class="text-sm sm:flex-grow mt-4 sm:mt-0">
+                            <a href="#" 
+                               class="block sm:inline-block mt-2 sm:mt-0 text-white 
+                                     font-semibold sm:text-sm ml-4 text-base">
                                 Movies
                             </a>
-                            <a href="#" class="block sm:inline-block mt-2 md:mt-0 text-white font-semibold text-sm ml-4">
+                            <a href="#" 
+                               class="block sm:inline-block mt-2 sm:mt-0 text-white 
+                                     font-semibold sm:text-sm text-base ml-4">
                                 TV Shows
                             </a>
-                            <a href="#" class="block sm:inline-block mt-2 sm:mt-0 text-white font-semibold text-sm ml-4">
+                            <a href="#" 
+                               class="block sm:inline-block mt-2 sm:mt-0 text-white 
+                                     font-semibold sm:text-sm text-base ml-4">
                                 People
                             </a>
                         </div>
                         <div class="flex flex-col md:flex-row text-sm">
                             @guest
-                                <a href="{{ route('login') }}" class="font-semibold block sm:inline-block mt-2 sm:mt-0 text-white mr-4 ml-4">{{ __('Login') }}</a>
+                                <a href="{{ route('login') }}" class="block sm:font-semibold sm:inline-block mt-4 sm:mt-0 text-white mr-4 ml-4">{{ __('Login') }}</a>
+                                <a href="{{ route('register') }}" class="block sm:font-semibold sm:inline-block mt-2 sm:mt-0 text-white mr-4 ml-4">{{ __('Register') }}</a>
                             @else 
                                 <a href="{{ route('logout') }}"
-                                    class="font-semibold block sm:inline-block mt-2 sm:mt-0 text-white ml-4 mr-4"
+                                    class="sm:font-semibold block sm:inline-block mt-4 sm:mt-0 text-white ml-4 mr-4"
                                     onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">

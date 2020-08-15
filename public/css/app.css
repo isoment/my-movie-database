@@ -38106,8 +38106,8 @@ video {
   margin-top: 2px;
 }
 
-.gold-gradient {
-  background: -webkit-linear-gradient(#F8E9A1, #F76C6C);
+.red-gradient {
+  background: -webkit-linear-gradient(90deg, #d4a1a1, #F76C6C);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
