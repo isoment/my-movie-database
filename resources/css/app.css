@@ -24,3 +24,10 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.trending-content {
+    background-image: url('/img/trending.svg');
+    /* background-size: 1300px; */
+    background-position: 50%, 200px;
+    background-repeat: no-repeat;
+}

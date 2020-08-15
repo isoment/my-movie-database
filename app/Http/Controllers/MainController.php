@@ -23,9 +23,14 @@ class MainController extends Controller
                          ->get('https://api.themoviedb.org/3/tv/popular')
                          ->json()['results'];
 
+        $trending = Http::withToken(config('services.tmdb.token'))
+                        ->get('https://api.themoviedb.org/3/trending/movietv/week')
+                        ->json()['results'];
+
         return view('main', [
             'popularMovies' => $popularMovies,
             'popularTV' => $popularTV,
+            'trending' => $trending,
         ]);
     }
 

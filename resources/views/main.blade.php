@@ -47,7 +47,7 @@
                                             top-0 -mt-7 right-0 mr-2">
                                     <span class="font-semibold">{{$movie['vote_average'] * 10}}%</span>
                                 </div>
-                                <h5 class="font-semibold mt-4">{{$movie['title']}}</h5>
+                                <h5 class="font-semibold text-sm mt-4">{{$movie['title']}}</h5>
                                 <h5 class="font-light text-xs text-gray-500 mt-1">{{\Carbon\Carbon::parse($movie['release_date'])->format('M, d Y')}}</h5>
                             </div>
                         </div>
@@ -81,13 +81,46 @@
                                             top-0 -mt-7 right-0 mr-2">
                                     <span class="font-semibold">{{$show['vote_average'] * 10}}%</span>
                                 </div>
-                                <h5 class="font-semibold mt-4">{{$show['name']}}</h5>
+                                <h5 class="font-semibold text-sm mt-4">{{$show['name']}}</h5>
                                 <h5 class="font-light text-xs text-gray-500 mt-1">{{\Carbon\Carbon::parse($show['first_air_date'])->format('M, d Y')}}</h5>
                             </div>
                         </div>
                     @endforeach
                 </div>
 
+            </div>
+        </section>
+
+        <section class="trending mt-8 lg:mt-12">
+            <div class="trending-content mt-8 px-10">
+                <div class="font-mulish">
+                    <h2 class="text-2xl font-semibold mr-4">Trending</h2>
+                </div>
+
+                <div class="flex overflow-x-scroll mt-6 pb-4">
+                    @foreach ($trending as $trending)
+                        {{-- Card --}}
+                        <div class="index-movie-card w-40 mr-4">
+                            <a href="#">
+                                <img src="https://image.tmdb.org/t/p/w500/{{$trending['poster_path']}}" alt="poster"
+                                    class="rounded-lg">
+                            </a>
+                            <div class="relative">
+                                <div class="badge text-xs absolute bg-white text-primary-red 
+                                            rounded-full py-1 px-2 border-2 border-primary-red
+                                            top-0 -mt-7 right-0 mr-2">
+                                    <span class="font-semibold">{{$trending['vote_average'] * 10}}%</span>
+                                </div>
+                                <h5 class="font-semibold text-sm mt-4">
+                                    {{ isset($trending['name']) ? $trending['name'] : $trending['title']}}
+                                </h5>
+                                <h5 class="font-light text-xs text-gray-500 mt-1">
+                                    {{ \Carbon\Carbon::parse(isset($trending['first_air_date']) ? $trending['first_air_date'] : $trending['release_date'])->format('M, d Y') }}
+                                </h5>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </section>
 
