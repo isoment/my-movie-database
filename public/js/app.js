@@ -19343,6 +19343,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./nav */ "./resources/js/nav.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19385,6 +19387,33 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/nav.js":
+/*!*****************************!*\
+  !*** ./resources/js/nav.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Navbar Toggle
+document.addEventListener('DOMContentLoaded', function () {
+  // Get all "navbar-burger" elements
+  var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0); // Check if there are any navbar burgers
+
+  if ($navbarBurgers.length > 0) {
+    // Add a click event on each of them
+    $navbarBurgers.forEach(function ($el) {
+      $el.addEventListener('click', function () {
+        // Get the "main-nav" element
+        var $target = document.getElementById('main-nav'); // Toggle the class on "main-nav"
+
+        $target.classList.toggle('hidden');
+      });
+    });
+  }
+});
 
 /***/ }),
 

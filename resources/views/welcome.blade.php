@@ -16,7 +16,7 @@
                                placeholder="Search...">
                         <input type="submit" value="Search" 
                                class="py-3 px-8 -ml-5 rounded-full bg-primary-red text-white 
-                                      text-sm font-bold focus:outline-none hover:text-primary-blue-med cursor-pointer 
+                                      text-sm font-bold focus:outline-none hover:text-primary-blue-dark cursor-pointer 
                                       transition ease-in-out duration-300">
                     </form>
                 </div>

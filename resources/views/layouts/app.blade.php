@@ -17,37 +17,52 @@
 </head>
 <body class="h-screen antialiased leading-none font-sans">
     <div id="app">
+
         <nav class="bg-primary-blue-dark shadow py-2">
             <div class="container mx-auto px-8">
-                <div class="flex items-center justify-center">
-                    <div class="mr-6">
+                <div class="flex items-center justify-between flex-wrap">
+
+                    <div class="mr-6 flex items-center">
                         <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
                             <img src="/img/logo.svg" alt="logo" class="h-12">
                         </a>
                     </div>
-                    <div>
-                        <a href="#" class="text-white font-semibold text-sm ml-4">Movies</a>
-                        <a href="#" class="text-white font-semibold text-sm ml-6">TV Shows</a>
-                        <a href="#" class="text-white font-semibold text-sm ml-6">People</a>
-                    </div>
-                    <div class="flex-1 text-right">
-                        @guest
-                            <a class="no-underline hover:underline text-gray-300 text-sm p-3" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            @if (Route::has('register'))
-                                <a class="no-underline hover:underline text-gray-300 text-sm p-3" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            @endif
-                        @else
-                            <span class="text-gray-300 text-sm pr-4">{{ Auth::user()->name }}</span>
 
-                            <a href="{{ route('logout') }}"
-                               class="no-underline hover:underline text-gray-300 text-sm p-3"
-                               onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                                {{ csrf_field() }}
-                            </form>
-                        @endguest
+
+                    <div class="cursor-pointer block sm:hidden text-white">
+                        <svg class="navbar-burger w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" 
+                                stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                <path d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
                     </div>
+
+                    <div id="main-nav" class="w-full flex-grow sm:flex items-center sm:w-auto hidden">
+                        <div class="text-sm sm:flex-grow mt-4 md:mt-0">
+                            <a href="#" class="block sm:inline-block mt-2 md:mt-0 text-white font-semibold text-sm ml-4">
+                                Movies
+                            </a>
+                            <a href="#" class="block sm:inline-block mt-2 md:mt-0 text-white font-semibold text-sm ml-4">
+                                TV Shows
+                            </a>
+                            <a href="#" class="block sm:inline-block mt-2 sm:mt-0 text-white font-semibold text-sm ml-4">
+                                People
+                            </a>
+                        </div>
+                        <div class="flex flex-col md:flex-row text-sm">
+                            @guest
+                                <a href="{{ route('login') }}" class="font-semibold block sm:inline-block mt-2 sm:mt-0 text-white mr-4 ml-4">{{ __('Login') }}</a>
+                            @else 
+                                <a href="{{ route('logout') }}"
+                                    class="font-semibold block sm:inline-block mt-2 sm:mt-0 text-white ml-4 mr-4"
+                                    onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                                    {{ csrf_field() }}
+                                </form>
+                            @endguest
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </nav>
