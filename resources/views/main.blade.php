@@ -48,7 +48,7 @@
                                     <span class="font-semibold">{{$movie['vote_average'] * 10}}%</span>
                                 </div>
                                 <h5 class="font-semibold mt-4">{{$movie['title']}}</h5>
-                                <h5 class="font-light mt-1">{{$movie['release_date']}}</h5>
+                                <h5 class="font-light text-xs text-gray-500 mt-1">{{\Carbon\Carbon::parse($movie['release_date'])->format('M, d Y')}}</h5>
                             </div>
                         </div>
                     @endforeach
@@ -57,7 +57,7 @@
             </div>
         </section>
 
-        <section class="popular-tv mt-8 lg:mt-24">
+        <section class="popular-tv mt-8 lg:mt-12">
             <div class="popular-tv-content mt-8 px-10">
                 <div class="font-mulish flex items-center">
                     <h2 class="text-2xl font-semibold mr-4">Popular TV</h2>
@@ -82,7 +82,7 @@
                                     <span class="font-semibold">{{$show['vote_average'] * 10}}%</span>
                                 </div>
                                 <h5 class="font-semibold mt-4">{{$show['name']}}</h5>
-                                <h5 class="font-light mt-1">{{$show['first_air_date']}}</h5>
+                                <h5 class="font-light text-xs text-gray-500 mt-1">{{\Carbon\Carbon::parse($show['first_air_date'])->format('M, d Y')}}</h5>
                             </div>
                         </div>
                     @endforeach

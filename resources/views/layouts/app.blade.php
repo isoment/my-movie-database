@@ -56,11 +56,11 @@
                         </div>
                         <div class="flex flex-col md:flex-row text-sm">
                             @guest
-                                <a href="{{ route('login') }}" class="block sm:font-semibold sm:inline-block mt-4 sm:mt-0 text-white mr-4 ml-4">{{ __('Login') }}</a>
-                                <a href="{{ route('register') }}" class="block sm:font-semibold sm:inline-block mt-2 sm:mt-0 text-white mr-4 ml-4">{{ __('Register') }}</a>
+                                <a href="{{ route('login') }}" class="block sm:font-semibold sm:inline-block mt-4 sm:mt-0 text-gray-300 sm:text-white mr-4 ml-4">{{ __('Login') }}</a>
+                                <a href="{{ route('register') }}" class="block sm:font-semibold sm:inline-block mt-2 sm:mt-0 text-gray-300 sm:text-white mr-4 ml-4">{{ __('Register') }}</a>
                             @else 
                                 <a href="{{ route('logout') }}"
-                                    class="sm:font-semibold block sm:inline-block mt-4 sm:mt-0 text-white ml-4 mr-4"
+                                    class="sm:font-semibold block sm:inline-block mt-4 sm:mt-0 text-gray-300 sm:text-white ml-4 mr-4"
                                     onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
