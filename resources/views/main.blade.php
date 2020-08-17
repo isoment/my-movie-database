@@ -32,12 +32,11 @@
                         <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-down chevron-more h-5 text-primary-red"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </a>
                 </div>
-                
                 <div class="flex overflow-x-scroll mt-6 pb-4">
                     @foreach ($popularMovies as $movie)
                         {{-- Card --}}
                         <div class="index-movie-card w-40 mr-4">
-                            <a href="#">
+                            <a href="{{route('movies.show', $movie['id'])}}">
                                 <img src="https://image.tmdb.org/t/p/w500/{{$movie['poster_path']}}" alt="poster"
                                     class="rounded-lg">
                             </a>
@@ -53,7 +52,6 @@
                         </div>
                     @endforeach
                 </div>
-
             </div>
         </section>
 
@@ -66,7 +64,6 @@
                         <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-down chevron-more h-5 text-primary-red"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </a>
                 </div>
-
                 <div class="flex overflow-x-scroll mt-6 pb-4">
                     @foreach ($popularTV as $show)
                         {{-- Card --}}
@@ -87,16 +84,14 @@
                         </div>
                     @endforeach
                 </div>
-
             </div>
         </section>
 
-        <section class="trending mt-8 lg:mt-12">
+        <section class="trending mt-8 mb-8 lg:mt-12">
             <div class="trending-content mt-8 px-10">
                 <div class="font-mulish">
                     <h2 class="text-2xl font-semibold mr-4">Trending</h2>
                 </div>
-
                 <div class="flex overflow-x-scroll mt-6 pb-4">
                     @foreach ($trending as $trending)
                         {{-- Card --}}

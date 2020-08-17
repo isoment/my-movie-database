@@ -40,27 +40,31 @@
                         <div class="text-sm sm:flex-grow mt-4 sm:mt-0">
                             <a href="#" 
                                class="block sm:inline-block mt-2 sm:mt-0 text-white 
-                                     font-semibold sm:text-sm ml-4 text-base">
+                                     font-semibold sm:text-sm ml-4 text-base hover:text-gray-200">
                                 Movies
                             </a>
                             <a href="#" 
                                class="block sm:inline-block mt-2 sm:mt-0 text-white 
-                                     font-semibold sm:text-sm text-base ml-4">
+                                     font-semibold sm:text-sm text-base ml-4 hover:text-gray-200">
                                 TV Shows
                             </a>
                             <a href="#" 
                                class="block sm:inline-block mt-2 sm:mt-0 text-white 
-                                     font-semibold sm:text-sm text-base ml-4">
+                                     font-semibold sm:text-sm text-base ml-4 hover:text-gray-200">
                                 People
                             </a>
                         </div>
                         <div class="flex flex-col md:flex-row text-sm">
                             @guest
-                                <a href="{{ route('login') }}" class="block sm:font-semibold sm:inline-block mt-4 sm:mt-0 text-gray-300 sm:text-white mr-4 ml-4">{{ __('Login') }}</a>
-                                <a href="{{ route('register') }}" class="block sm:font-semibold sm:inline-block mt-2 sm:mt-0 text-gray-300 sm:text-white mr-4 ml-4">{{ __('Register') }}</a>
+                                <a href="{{ route('login') }}" 
+                                   class="block sm:font-semibold sm:inline-block mt-4 sm:mt-0 text-gray-300 
+                                   sm:text-white mr-4 ml-4 hover:text-gray-200">{{ __('Login') }}</a>
+                                <a href="{{ route('register') }}" 
+                                   class="block sm:font-semibold sm:inline-block mt-2 sm:mt-0 text-gray-300 
+                                   sm:text-white mr-4 ml-4 hover:text-gray-200">{{ __('Register') }}</a>
                             @else 
                                 <a href="{{ route('logout') }}"
-                                    class="sm:font-semibold block sm:inline-block mt-4 sm:mt-0 text-gray-300 sm:text-white ml-4 mr-4"
+                                    class="sm:font-semibold block sm:inline-block mt-4 sm:mt-0 text-gray-300 sm:text-white ml-4 mr-4 hover:text-gray-200"
                                     onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
@@ -78,7 +82,7 @@
 
         <footer class="bg-primary-blue-dark text-white py-6">
             <div class="container mx-auto flex flex-col md:flex-row px-12 md:px-12 lg:px-32 xl:px-64 md:mb-12">
-                <div class="flex flex-col mt-9 md:mr-8">
+                <div class="flex flex-col mt-3 md:mt-9 md:mr-8">
                     <img src="/img/logo.svg" alt="footer-logo" class="h-10 md:h-12 hidden md:block">
                     <div class="bg-white text-primary-blue-med mt-4 text-center p-2 rounded-lg
                                 font-bold border-2 border-primary-red" style="max-width: 250px">
