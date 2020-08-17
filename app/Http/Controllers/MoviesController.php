@@ -48,11 +48,21 @@ class MoviesController extends Controller
         // Genres
         $genres = collect($movie['genres'])->pluck('name')->implode(', ');
 
+        // Runtime in hours and min
         $runTime = date('G\h i\m', mktime(0, $movie['runtime']));
 
+        // Vote Percentage
+        $vote = $movie['vote_average'] * 10;
+
+        // Selected Crew
+        $selectCrew = collect($movie['credits']['crew'])->filter(function($value) {
+            return data_get($value, 'job') == "Director" || 
+                   data_get($value, 'job') == "Producer" ||
+                   data_get($value, 'job') == "Writer";
+        })->take(5);
+
         // Dumps
-        dump($runTime);
-        dump($movie);
+        dump($selectCrew);
 
         return view('movies.show', [
             'movie' => $movie,
@@ -61,6 +71,8 @@ class MoviesController extends Controller
             'releaseDate' => $releaseDate,
             'genres' => $genres,
             'runTime' => $runTime,
+            'vote' => $vote,
+            'selectCrew' => $selectCrew,
         ]);
     }
 }

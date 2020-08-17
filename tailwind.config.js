@@ -5,7 +5,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'mulish': ['Mulish']
+      'mulish': ['Mulish'],
+      'righteous': ['Righteous'],
     },
     extend: {
       colors: {
