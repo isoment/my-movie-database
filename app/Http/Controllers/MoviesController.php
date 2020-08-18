@@ -57,12 +57,17 @@ class MoviesController extends Controller
         // Selected Crew
         $selectCrew = collect($movie['credits']['crew'])->filter(function($value) {
             return data_get($value, 'job') == "Director" || 
-                   data_get($value, 'job') == "Producer" ||
                    data_get($value, 'job') == "Writer";
-        })->take(5);
+        })->take(3);
+
+        // Producers
+        $producers = collect($movie['credits']['crew'])->filter(function($value) {
+            return data_get($value, 'job') == "Producer" || 
+                   data_get($value, 'job') == "Executive Producer";
+        })->take(3);
 
         // Dumps
-        dump($selectCrew);
+        dump($movie);
 
         return view('movies.show', [
             'movie' => $movie,
@@ -73,6 +78,7 @@ class MoviesController extends Controller
             'runTime' => $runTime,
             'vote' => $vote,
             'selectCrew' => $selectCrew,
+            'producers' => $producers,
         ]);
     }
 }

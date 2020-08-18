@@ -68,7 +68,7 @@
                     @foreach ($popularTV as $show)
                         {{-- Card --}}
                         <div class="index-movie-card w-40 mr-4">
-                            <a href="#">
+                            <a href="{{route('tv.show', $show['id'])}}">
                                 <img src="https://image.tmdb.org/t/p/w500/{{$show['poster_path']}}" alt="poster"
                                     class="rounded-lg">
                             </a>
