@@ -96,7 +96,7 @@
                     @foreach ($trending as $trending)
                         {{-- Card --}}
                         <div class="index-movie-card w-40 mr-4">
-                            <a href="#">
+                            <a href="{{isset($trending['title']) ? route('movies.show', $trending['id']) : route('tv.show', $trending['id'])}}">
                                 <img src="https://image.tmdb.org/t/p/w500/{{$trending['poster_path']}}" alt="poster"
                                     class="rounded-lg">
                             </a>

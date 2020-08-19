@@ -66,6 +66,9 @@ class MoviesController extends Controller
                    data_get($value, 'job') == "Executive Producer";
         })->take(3);
 
+        // Cast
+        $cast = collect($movie['credits']['cast'])->take(10);
+
         // Dumps
         dump($movie);
 
@@ -79,6 +82,7 @@ class MoviesController extends Controller
             'vote' => $vote,
             'selectCrew' => $selectCrew,
             'producers' => $producers,
+            'cast' => $cast,
         ]);
     }
 }

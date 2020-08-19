@@ -55,10 +55,10 @@ class TvController extends Controller
         $vote = $tvShow['vote_average'] * 10;
 
         // Created By
-        $creator = $tvShow['created_by'];
+        $creator = collect($tvShow['created_by'])->take(3);
 
-        dump($runTime);
-        dump($tvShow);
+        // dump($runTime);
+        // dump($tvShow);
 
         return view('tv.show', [
             'tvShow' => $tvShow,

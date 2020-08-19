@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container mx-auto px-9">
+
         <div class="flex flex-col md:flex-row my-12">
             <div class="poster mr-12">
                 <img src="https://image.tmdb.org/t/p/w300/{{$movie['poster_path']}}" 
@@ -49,5 +50,24 @@
                 </div>
             </div>
         </div>
+
+        <div>
+            <h1 class="text-2xl font-bold">Cast</h1>
+            <div class="flex flex-row overflow-x-scroll mt-6 pb-4">
+                @foreach ($cast as $cast)
+                    <div class="index-movie-card mr-4">
+                        <a href="{{route('people.show', $cast['id'])}}">
+                            <img src="https://image.tmdb.org/t/p/w300/{{$cast['profile_path']}}" 
+                                alt="cast member" class="rounded-lg shadow-lg">
+                        </a>
+                        <div class="mt-5">
+                            <h3 class="font-semibold text-sm">{{$cast['name']}}</h3>
+                            <h5 class="font-light text-xs text-gray-500 mt-1">{{$cast['character']}}</h5>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
     </div>
 @endsection
