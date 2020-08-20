@@ -81,7 +81,7 @@
         @yield('content')
 
         <footer class="bg-primary-blue-dark text-white py-6">
-            <div class="container mx-auto flex flex-col md:flex-row px-12 md:px-12 lg:px-32 xl:px-64 md:mb-12">
+            <div class="container mx-auto flex flex-col md:flex-row md:justify-around px-12 md:px-12 lg:px-32 xl:px-64 md:mb-12">
                 <div class="flex flex-col mt-3 md:mt-9 md:mr-8">
                     <img src="/img/logo.svg" alt="footer-logo" class="h-10 md:h-12 hidden md:block">
                     <div class="bg-white text-primary-blue-med mt-4 text-center p-2 rounded-lg

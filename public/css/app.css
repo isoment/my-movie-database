@@ -38096,7 +38096,8 @@ video {
 }
 
 .intro {
-  background-image: linear-gradient(-45deg, #a8d0e6bd, #232f5ce6), url('/img/intro-background-new.jpg');
+  /* background-image: linear-gradient(-45deg, #a8d0e6bd, #232f5ce6), url('/img/intro-background-new.jpg'); */
+  background-image: linear-gradient(-45deg, #232f5c5c, #232f5ce6), url('/img/intro-background-new.jpg');
   width: 100%;
   background-size: cover;
 }
@@ -38123,9 +38124,13 @@ video {
   background-repeat: no-repeat;
 }
 
+.cast-profile-img {
+  min-height: 225px;
+}
+
 @media only screen and (min-width: 600px) {
   .poster {
-    min-width: 250px;
+    min-width: 300px;
   }
 }
 

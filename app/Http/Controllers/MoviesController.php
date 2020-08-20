@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use NumberFormatter;
 
 class MoviesController extends Controller
 {
@@ -19,7 +20,7 @@ class MoviesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the individual movie.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -27,7 +28,7 @@ class MoviesController extends Controller
     public function show($id)
     {
         $movie = Http::withToken(config('services.tmdb.token'))
-                            ->get('https://api.themoviedb.org/3/movie/' . $id . '?append_to_response=credits,release_dates,videos,images')
+                            ->get('https://api.themoviedb.org/3/movie/' . $id . '?append_to_response=external_ids,keywords,credits,release_dates,videos,images')
                             ->json();
 
         // Release Year
@@ -69,6 +70,27 @@ class MoviesController extends Controller
         // Cast
         $cast = collect($movie['credits']['cast'])->take(10);
 
+        // Keywords
+        $keywords = $movie['keywords']['keywords'] ? 
+                    collect($movie['keywords']['keywords'])->take(15) :
+                    'No Keywords';
+
+        // Determine budget and revenue
+        function monetary($type) {
+            if ($type == 0) {
+                return 'Not Available';
+            } else {
+                return '$' . number_format($type);
+            } 
+        }
+        $budget = monetary($movie['budget']);
+        $revenue = monetary($movie['revenue']);
+
+        // Social Links
+        $facebook = 'https://www.facebook.com/' . $movie['external_ids']['facebook_id'];
+        $twitter = 'https://twitter.com/' . $movie['external_ids']['twitter_id'];
+        $instagram = 'https://www.instagram.com/' . $movie['external_ids']['instagram_id'];
+
         // Dumps
         dump($movie);
 
@@ -83,6 +105,13 @@ class MoviesController extends Controller
             'selectCrew' => $selectCrew,
             'producers' => $producers,
             'cast' => $cast,
+            'keywords' => $keywords,
+            'budget' => $budget,
+            'revenue' => $revenue,
+            'facebook' => $facebook,
+            'twitter' => $twitter,
+            'instagram' => $instagram,
         ]);
     }
+
 }

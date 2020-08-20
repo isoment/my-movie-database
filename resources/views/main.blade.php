@@ -6,7 +6,7 @@
         <section class="intro">
             <div class="px-4 lg:px-10 py-12 lg:pt-24 lg:pb-24">
                 <div class="text-white">
-                    <h2 class="text-5xl font-extrabold">Welcome.</h2>
+                    <h2 class="text-4xl font-extrabold">Welcome.</h2>
                     <h3 class="text-2xl font-semibold mt-2">Explore millions of movies, TV shows and people. Right here.</h3>
                 </div>
                 <div class="mt-12">
