@@ -27,7 +27,7 @@ class TvController extends Controller
     public function show($id)
     {
         $tvShow = Http::withToken(config('services.tmdb.token'))
-                            ->get('https://api.themoviedb.org/3/tv/' . $id . '?append_to_response=credits,content_ratings,videos,images')
+                            ->get('https://api.themoviedb.org/3/tv/' . $id . '?append_to_response=credits,content_ratings,videos,images,external_ids,keywords')
                             ->json();
 
         // Release Year
@@ -57,7 +57,25 @@ class TvController extends Controller
         // Created By
         $creator = collect($tvShow['created_by'])->take(3);
 
-        // dump($runTime);
+        // Cast
+        $cast = collect($tvShow['credits']['cast']);
+
+        // Keywords
+        $keywords = $tvShow['keywords']['results'] ? 
+            collect($tvShow['keywords']['results'])->take(15) :
+            'No Keywords';
+
+        // Status
+        $status = $tvShow['status'];
+
+        // Latest episode air
+        $latestAir = Carbon::parse($tvShow['last_air_date'])->format('m/d/Y');
+
+        // Social Links
+        $facebook = 'https://www.facebook.com/' . $tvShow['external_ids']['facebook_id'];
+        $twitter = 'https://twitter.com/' . $tvShow['external_ids']['twitter_id'];
+        $instagram = 'https://www.instagram.com/' . $tvShow['external_ids']['instagram_id'];
+        
         // dump($tvShow);
 
         return view('tv.show', [
@@ -69,6 +87,13 @@ class TvController extends Controller
             'runTime' => $runTime,
             'vote' => $vote,
             'creator' => $creator,
+            'cast' => $cast,
+            'keywords' => $keywords,
+            'status' => $status,
+            'latestAir' => $latestAir,
+            'facebook' => $facebook,
+            'twitter' => $twitter,
+            'instagram' => $instagram,
         ]);
     }
 }

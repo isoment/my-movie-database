@@ -92,7 +92,7 @@ class MoviesController extends Controller
         $instagram = 'https://www.instagram.com/' . $movie['external_ids']['instagram_id'];
 
         // Dumps
-        dump($movie);
+        // dump($movie);
 
         return view('movies.show', [
             'movie' => $movie,
