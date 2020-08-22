@@ -118,8 +118,28 @@
                         </tbody>
                     </table>
                 </div>
-
-                
+                <div class="production">
+                    <h1 class="text-xl font-bold mt-8 mb-4">Production</h1>
+                    <table class="table-auto text-primary-blue-dark text-sm w-full">
+                        <tbody>
+                            @foreach ($production as $production)
+                                <tr>
+                                    <td class="border px-4 py-2 bg-gray-100">
+                                        <div class="px-2">
+                                            <span class="mr-6">{{$production['creditsYear']}}</span>
+                                            <a href="{{ isset($production['title']) ? route('movies.show', $production['id']) : route('tv.show', $production['id']) }}"
+                                               class="font-semibold">
+                                                {{$production['creditsTitle']}}
+                                            </a>
+                                            <span class="text-gray-500 text-sm font-light">as</span>
+                                            <span>{{$production['job']}}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

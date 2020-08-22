@@ -70,8 +70,8 @@ class PeopleController extends Controller
         // Birth Place
         $birthPlace = $people['place_of_birth'] ? $people['place_of_birth'] : 'Unknown';
 
-        // Get Credits for both movies and tv and sort be release date
-        $credits = collect($people['combined_credits']['cast'])->map(function ($movie) {
+        // Get acting credits for both movies and tv and sort be release date
+        $credits = collect($people['combined_credits']['cast'])->map(function($movie) {
             if (isset($movie['release_date'])) {
                 $creditsReleaseDate = $movie['release_date'];
             } elseif (isset($movie['first_air_date'])) {
@@ -96,8 +96,34 @@ class PeopleController extends Controller
             ]);
         })->whereNotIn('creditsReleaseDate', '')->sortByDesc('creditsReleaseDate');
 
+        // Production credits
+        $production = collect($people['combined_credits']['crew'])->map(function($item) {
+            if (isset($item['release_date'])) {
+                $creditsReleaseDate = $item['release_date'];
+            } elseif (isset($item['first_air_date'])) {
+                $creditsReleaseDate = $item['first_air_date'];
+            } else {
+                $creditsReleaseDate = null;
+            }
+
+            if (isset($item['title'])) {
+                $creditsTitle = $item['title'];
+            } elseif (isset($item['name'])) {
+                $creditsTitle = $item['name'];
+            } else {
+                $creditsTitle = 'Untitled';
+            }
+
+            return collect($item)->merge([
+                'creditsReleaseDate' => $creditsReleaseDate,
+                'creditsYear' => Carbon::parse($creditsReleaseDate)->format('Y'),
+                'creditsTitle' => $creditsTitle,
+                'job' => $item['job'] ? $item['job'] : 'Unknown',
+            ]);
+        })->whereNotIn('creditsReleaseDate', '')->sortByDesc('creditsReleaseDate');
+
         // Dumps
-        dump($credits);
+        dump($production);
         dump($people);
 
         return view('people.show', [
@@ -113,6 +139,7 @@ class PeopleController extends Controller
             'age' => $age,
             'birthPlace' => $birthPlace,
             'credits' => $credits,
+            'production' => $production,
         ]);
     }
 }
