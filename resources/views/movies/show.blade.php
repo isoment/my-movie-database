@@ -4,8 +4,8 @@
     <div class="container mx-auto px-9">
 
         <div class="flex flex-col md:flex-row my-12">
-            <div class="poster mr-12">
-                <img src="https://image.tmdb.org/t/p/w300/{{$movie['poster_path']}}" 
+            <div class="poster mr-12 {{ $movie['poster_path'] ? '' : 'bg-gray-100' }}">
+                <img src="{{ $movie['poster_path'] ? 'https://image.tmdb.org/t/p/w300/' . $movie['poster_path'] : '/img/No-Poster.svg' }}" 
                      alt="poster" class="rounded-lg">
             </div>
             <div class="details">
@@ -27,7 +27,7 @@
                 <div class="overview text-gray-500 mt-8">
                     <h2 class="italic mb-4">{{$movie['tagline'] ?? ''}}</h2>
                     <h2 class="text-black font-bold text-lg mb-2 mt-8">Overview</h2>
-                    <p class="mt-2">{{$movie['overview']}}</p>
+                    <p class="mt-2 leading-relaxed">{{$movie['overview']}}</p>
                 </div>
                 <div class="crew text-gray-500 mt-8">
                     <h2 class="text-black text-lg font-bold">Crew</h2>

@@ -6,10 +6,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 .intro {
-    /* background-image: linear-gradient(-45deg, #a8d0e6bd, #232f5ce6), url('/img/intro-background-new.jpg'); */
     background-image: linear-gradient(-45deg, #232f5c5c, #232f5ce6), url('/img/intro-background-new.jpg');
-    width: 100%;
-    background-size: cover;
+    background-size: auto;
 }
 
 .index-movie-card {
@@ -38,8 +36,17 @@
     min-height: 225px;
 }
 
+.people-bio {
+    white-space: pre-line;
+}
+
+/* Apply above 600px */
 @media only screen and (min-width: 600px) {
     .poster {
         min-width: 300px;
+    }
+
+    .intro {
+        background-size: cover;
     }
 }
