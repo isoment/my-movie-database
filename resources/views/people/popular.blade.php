@@ -4,24 +4,23 @@
     <div class="container mx-auto px-9">
 
         <div class="my-12">
-            <h1 class="text-3xl font-bold mb-8">Top Rated Movies</h1>
+            <h1 class="text-3xl font-bold mb-8">Popular People</h1>
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-10">
-                @foreach ($topRated as $movie)
+                @foreach ($popularPeople as $person)
                     {{-- Card --}}
-                    <div class="movie top-rated-card w-35 lg:w-60 mr-4">
-                        <a href="{{route('movies.show', $movie['id'])}}">
-                            <img src="https://image.tmdb.org/t/p/w500/{{$movie['poster_path']}}" alt="poster"
+                    <div class="popular top-rated-card w-35 lg:w-60 mr-4">
+                        <a href="{{route('movies.show', $person['id'])}}">
+                            <img src="https://image.tmdb.org/t/p/w500/{{$person['profile_path']}}" alt="profile"
                                 class="rounded-lg">
                         </a>
                         <div class="relative">
                             <div class="badge text-xs absolute bg-white text-primary-red 
                                         rounded-full py-1 md:py-2 px-2 md:px-3 border-2 border-primary-red
-                                        top-0 -mt-7 md:-mt-9 right-0 mr-2 md:mr-3">
-                                <span class="font-semibold">{{$movie['vote_average'] * 10}}%</span>
+                                        top-0 -mt-3 md:-mt-5 right-0 mr-2 md:mr-3">
+                                <span class="font-semibold">{{round($person['popularity'], 2)}} Popularity</span>
                             </div>
-                            <h5 class="font-semibold text-sm mt-4">{{$movie['title']}}</h5>
-                            <h5 class="font-light text-xs text-gray-500 mt-1">{{\Carbon\Carbon::parse($movie['release_date'])->format('M, d Y')}}</h5>
                         </div>
+                        <h5 class="font-semibold text-sm mt-6 text-center">{{$person['name']}}</h5>
                     </div>
                 @endforeach
             </div>
@@ -41,8 +40,8 @@
     <script>
         var elem = document.querySelector('.grid');
         var infScroll = new InfiniteScroll(elem, {
-            path: '/movies/top-rated/@{{#}}',
-            append: '.movie',
+            path: '/people/popular/@{{#}}',
+            append: '.popular',
             history: false,
             status: '.page-load-status',
         });

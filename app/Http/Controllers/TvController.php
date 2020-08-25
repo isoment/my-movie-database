@@ -13,9 +13,17 @@ class TvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function topRated($page = 1)
     {
-        //
+        abort_if($page > 500, 204);
+
+        $topRated = Http::withToken(config('services.tmdb.token'))
+                            ->get('https://api.themoviedb.org/3/tv/top_rated?page=' . $page)
+                            ->json()['results'];
+
+        return view('tv.top-rated', [
+            'topRated' => $topRated,
+        ]);
     }
 
     /**

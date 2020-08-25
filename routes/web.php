@@ -16,11 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'MainController@index')->name('main');
 
 Route::get('/movies/top-rated', 'MoviesController@topRated')->name('movies.top');
-Route::get('/movies/top-rated/page/{page?}', 'MoviesController@topRated');
+Route::get('/movies/top-rated/{page?}', 'MoviesController@topRated');
 Route::get('/movies/{id}', 'MoviesController@show')->name('movies.show');
 
+Route::get('/tv/top-rated', 'TvController@topRated')->name('tv.top');
+Route::get('/tv/top-rated/{page?}', 'TvController@topRated');
 Route::get('/tv/{id}', 'TvController@show')->name('tv.show');
 
+Route::get('/people/popular', 'PeopleController@popular')->name('people.popular');
+Route::get('/people/popular/{page?}', 'PeopleController@popular');
 Route::get('/people/{id}', 'PeopleController@show')->name('people.show');
 
 Route::get('/home', 'HomeController@index')->name('home');

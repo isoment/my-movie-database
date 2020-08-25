@@ -13,9 +13,17 @@ class PeopleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function popular($page = 1)
     {
-        //
+        $popularPeople = Http::withToken(config('services.tmdb.token'))
+                                ->get('https://api.themoviedb.org/3/person/popular?page=' . $page)
+                                ->json()['results'];
+
+        dump($popularPeople);
+
+        return view('people.popular', [
+            'popularPeople' => $popularPeople,
+        ]);
     }
 
     /**

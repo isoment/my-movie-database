@@ -43,12 +43,12 @@
                                      font-semibold sm:text-sm ml-4 text-base hover:text-gray-200">
                                 Movies
                             </a>
-                            <a href="#" 
+                            <a href="{{route('tv.top')}}" 
                                class="block sm:inline-block mt-2 sm:mt-0 text-white 
                                      font-semibold sm:text-sm text-base ml-4 hover:text-gray-200">
                                 TV Shows
                             </a>
-                            <a href="#" 
+                            <a href="{{route('people.popular')}}" 
                                class="block sm:inline-block mt-2 sm:mt-0 text-white 
                                      font-semibold sm:text-sm text-base ml-4 hover:text-gray-200">
                                 People
