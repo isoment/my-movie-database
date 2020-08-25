@@ -14,9 +14,17 @@ class MoviesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function topRated()
     {
-        //
+        $topRated = Http::withToken(config('services.tmdb.token'))
+                            ->get('https://api.themoviedb.org/3/movie/top_rated')
+                            ->json()['results'];
+
+        // dump($topRated);
+
+        return view('movies.top-rated', [
+            'topRated' => $topRated,
+        ]);
     }
 
     /**

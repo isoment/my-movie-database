@@ -60,7 +60,8 @@
                             <img src="{{ $cast['profile_path'] ? 
                                      'https://image.tmdb.org/t/p/w300/'.$cast['profile_path'] : 
                                      '/img/No-Profile-Pic.svg' }}" 
-                                alt="cast member" class="cast-profile-img rounded-lg shadow-lg">
+                                alt="cast member" class="cast-profile-img rounded-lg shadow-lg
+                                                        {{$cast['profile_path'] ? '' : 'bg-gray-100'}}">
                         </a>
                         <div class="mt-5">
                             <h3 class="font-semibold text-sm">{{$cast['name']}}</h3>

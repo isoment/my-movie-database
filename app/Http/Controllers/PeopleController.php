@@ -30,9 +30,6 @@ class PeopleController extends Controller
                             ->get('https://api.themoviedb.org/3/person/' . $id . '?append_to_response=movie_credits,tv_credits,combined_credits,external_ids')
                             ->json();
 
-        // Profile Photo
-        $profilePhoto = 'https://image.tmdb.org/t/p/w300' . $people['profile_path'];
-
         // Known For
         $knownFor = collect($people['movie_credits']['cast'])
                         ->sortByDesc('popularity')->take(10);
@@ -71,7 +68,7 @@ class PeopleController extends Controller
         $birthPlace = $people['place_of_birth'] ? $people['place_of_birth'] : 'Unknown';
 
         // Get acting credits for both movies and tv and sort be release date
-        $credits = collect($people['combined_credits']['cast'])->map(function($movie) {
+        $acting = collect($people['combined_credits']['cast'])->map(function($movie) {
             if (isset($movie['release_date'])) {
                 $creditsReleaseDate = $movie['release_date'];
             } elseif (isset($movie['first_air_date'])) {
@@ -92,7 +89,7 @@ class PeopleController extends Controller
                 'creditsReleaseDate' => $creditsReleaseDate,
                 'creditsYear' => Carbon::parse($creditsReleaseDate)->format('Y'),
                 'creditsTitle' => $creditsTitle,
-                'character' => $movie['character'] ? $movie['character'] : 'Unknown',
+                'character' => !empty($movie['character']) ? $movie['character'] : 'Unknown',
             ]);
         })->whereNotIn('creditsReleaseDate', '')->sortByDesc('creditsReleaseDate');
 
@@ -122,13 +119,14 @@ class PeopleController extends Controller
             ]);
         })->whereNotIn('creditsReleaseDate', '')->sortByDesc('creditsReleaseDate');
 
+        // Credit Count
+        $creditCount = $production->count() + $acting->count();
+
         // Dumps
-        dump($production);
         dump($people);
 
         return view('people.show', [
             'people' => $people,
-            'profilePhoto' => $profilePhoto,
             'knownFor' => $knownFor,
             'facebook' => $facebook,
             'twitter' => $twitter,
@@ -138,8 +136,9 @@ class PeopleController extends Controller
             'deathday' => $deathday,
             'age' => $age,
             'birthPlace' => $birthPlace,
-            'credits' => $credits,
+            'acting' => $acting,
             'production' => $production,
+            'creditCount' => $creditCount,
         ]);
     }
 }

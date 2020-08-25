@@ -38130,6 +38130,10 @@ video {
   white-space: pre-line;
 }
 
+.height-no-profile {
+  height: 330px
+}
+
 /* Apply above 600px */
 
 @media only screen and (min-width: 600px) {
