@@ -38,7 +38,7 @@
 
                     <div id="main-nav" class="w-full flex-grow sm:flex items-center sm:w-auto hidden pb-4 sm:pb-0">
                         <div class="text-sm sm:flex-grow mt-4 sm:mt-0">
-                            <a href="#" 
+                            <a href="{{route('movies.top')}}"
                                class="block sm:inline-block mt-2 sm:mt-0 text-white 
                                      font-semibold sm:text-sm ml-4 text-base hover:text-gray-200">
                                 Movies
@@ -113,5 +113,6 @@
             </div>
         </footer>
     </div>
+    @yield('scripts')
 </body>
 </html>

@@ -14,10 +14,12 @@ class MoviesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function topRated()
+    public function topRated($page = 1)
     {
+        abort_if($page > 500, 204);
+
         $topRated = Http::withToken(config('services.tmdb.token'))
-                            ->get('https://api.themoviedb.org/3/movie/top_rated')
+                            ->get('https://api.themoviedb.org/3/movie/top_rated?page=' . $page)
                             ->json()['results'];
 
         // dump($topRated);
