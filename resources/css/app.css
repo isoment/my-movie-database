@@ -44,6 +44,11 @@
     height: 330px
 }
 
+.popular-profile {
+    max-height: 360px;
+    min-height: 200px;
+}
+
 /* Apply above 600px */
 @media only screen and (min-width: 600px) {
     .poster {

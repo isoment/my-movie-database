@@ -10,14 +10,17 @@
                     {{-- Card --}}
                     <div class="popular top-rated-card w-35 lg:w-60 mr-4">
                         <a href="{{route('movies.show', $person['id'])}}">
-                            <img src="https://image.tmdb.org/t/p/w500/{{$person['profile_path']}}" alt="profile"
-                                class="rounded-lg">
+                            <img src="{{$person['profile_path'] ? 
+                                        'https://image.tmdb.org/t/p/w500/' . $person['profile_path'] :
+                                        '/img/No-Profile-Popular.png'}}" 
+                                 alt="profile"
+                                 class="rounded-lg shadow-lg popular-profile {{$person['profile_path'] ? '' : 'bg-gray-100'}}">
                         </a>
                         <div class="relative">
                             <div class="badge text-xs absolute bg-white text-primary-red 
                                         rounded-full py-1 md:py-2 px-2 md:px-3 border-2 border-primary-red
                                         top-0 -mt-3 md:-mt-5 right-0 mr-2 md:mr-3">
-                                <span class="font-semibold">{{round($person['popularity'], 2)}} Popularity</span>
+                                <span class="font-semibold">{{round($person['popularity'], 1)}} Rank</span>
                             </div>
                         </div>
                         <h5 class="font-semibold text-sm mt-6 text-center">{{$person['name']}}</h5>
