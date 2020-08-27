@@ -5,13 +5,15 @@
 
         <div class="my-12">
             <h1 class="text-3xl font-bold mb-8">Top Rated Movies</h1>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
                 @foreach ($topRated as $movie)
                     {{-- Card --}}
                     <div class="movie top-rated-card w-35 lg:w-60 mr-4">
                         <a href="{{route('movies.show', $movie['id'])}}">
-                            <img src="https://image.tmdb.org/t/p/w500/{{$movie['poster_path']}}" alt="poster"
-                                class="rounded-lg">
+                            <img src="{{$movie['poster_path'] ?
+                                        'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'] :
+                                        '/img/No-Poster-Top.png' }}" alt="poster"
+                                class="rounded-lg shadow-lg popular-profile {{$movie['poster_path'] ? '' : 'bg-gray-100'}}">
                         </a>
                         <div class="relative">
                             <div class="badge text-xs absolute bg-white text-primary-red 

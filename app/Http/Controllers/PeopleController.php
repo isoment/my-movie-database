@@ -19,8 +19,6 @@ class PeopleController extends Controller
                                 ->get('https://api.themoviedb.org/3/person/popular?page=' . $page)
                                 ->json()['results'];
 
-        dump($popularPeople);
-
         return view('people.popular', [
             'popularPeople' => $popularPeople,
         ]);
@@ -37,6 +35,9 @@ class PeopleController extends Controller
         $people = Http::withToken(config('services.tmdb.token'))
                             ->get('https://api.themoviedb.org/3/person/' . $id . '?append_to_response=movie_credits,tv_credits,combined_credits,external_ids')
                             ->json();
+
+        // Return 404 if doesnt exist
+        abort_if(isset($people['success']) && $people['success'] == false, 404);
 
         // Known For
         $knownFor = collect($people['movie_credits']['cast'])
@@ -129,9 +130,6 @@ class PeopleController extends Controller
 
         // Credit Count
         $creditCount = $production->count() + $acting->count();
-
-        // Dumps
-        dump($people);
 
         return view('people.show', [
             'people' => $people,

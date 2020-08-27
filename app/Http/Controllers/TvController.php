@@ -38,6 +38,8 @@ class TvController extends Controller
                             ->get('https://api.themoviedb.org/3/tv/' . $id . '?append_to_response=credits,content_ratings,videos,images,external_ids,keywords')
                             ->json();
 
+        abort_if(isset($tvShow['success']) && $tvShow['success'] == false, 404);
+
         // Release Year
         $releaseYear = Carbon::parse($tvShow['first_air_date'])->format('Y');
 
@@ -83,8 +85,6 @@ class TvController extends Controller
         $facebook = 'https://www.facebook.com/' . $tvShow['external_ids']['facebook_id'];
         $twitter = 'https://twitter.com/' . $tvShow['external_ids']['twitter_id'];
         $instagram = 'https://www.instagram.com/' . $tvShow['external_ids']['instagram_id'];
-        
-        // dump($tvShow);
 
         return view('tv.show', [
             'tvShow' => $tvShow,

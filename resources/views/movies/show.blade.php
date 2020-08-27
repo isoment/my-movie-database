@@ -4,19 +4,19 @@
     <div class="container mx-auto px-9">
 
         <div class="flex flex-col md:flex-row my-12">
-            <div class="poster mr-12 {{ $movie['poster_path'] ? '' : 'bg-gray-100' }}">
+            <div class="poster lg:mr-12 {{ $movie['poster_path'] ? '' : 'bg-gray-100' }}">
                 <img src="{{ $movie['poster_path'] ? 'https://image.tmdb.org/t/p/w300/' . $movie['poster_path'] : '/img/No-Poster.svg' }}" 
-                     alt="poster" class="rounded-lg">
+                     alt="poster" class="rounded-lg text-center">
             </div>
             <div class="details">
-                <h1 class="text-3xl font-bold">{{$movie['title']}} ({{$releaseYear}})</h1>
-                <div class="flex items-center mt-2 text-sm text-gray-500">
-                    <div class="text-primary-red font-semibold border 
-                                border-gray-500 p-1 mr-2 rounded-md">Rated: {{$rating}}</div>
-                    <div>{{$releaseDate}}</div>
-                    <div class="px-2 text-3xl">&#183;</div>
-                    <div>{{$genres}}</div>
-                    <div class="px-2 text-3xl">&#183;</div>
+                <h1 class="text-lg lg:text-3xl font-bold mt-6 lg:mt-0">{{$movie['title']}} ({{$releaseYear}})</h1>
+                <div class="flex flex-col lg:flex-row lg:items-center mt-2 text-sm text-gray-500">
+                    <div class="text-primary-red font-semibold lg:border text-xs lg:w-auto lg:text-base
+                                border-gray-500 py-1 lg:px-2 mr-2 rounded-md mb-1 lg:mb-0">Rated: {{$rating}}</div>
+                    <div class="mb-1 lg:mb-0">{{$releaseDate}}</div>
+                    <div class="px-2 text-3xl hidden lg:inline-block">&#183;</div>
+                    <div class="mb-1 lg:mb-0">{{$genres}}</div>
+                    <div class="px-2 text-3xl hidden lg:inline-block">&#183;</div>
                     <div>{{$movie['runtime']}} min</div>
                 </div>
                 <div class="flex items-center mt-6">
@@ -72,10 +72,10 @@
             </div>
         </div>
 
-        <div class="mt-12 mb-12">
-            <div class="flex flex-col md:flex-row mt-6 justify-around items-center">
+        <div class="mt-4 lg:mt-12 mb-12">
+            <div class="flex flex-col md:flex-row lg:mt-6 justify-around">
                 <div class="flex flex-col">
-                    <div class="flex flex-row">
+                    <div class="flex order-2 flex-row items-center mb-2 lg:mb-0 lg:mt-4">
                         @if ($facebook == 'https://www.facebook.com/')
                             <svg class="fill-current text-gray-400 cursor-not-allowed w-6 mr-3" viewBox="0 0 448 512"><path d="M448 56.7v398.5c0 13.7-11.1 24.7-24.7 24.7H309.1V306.5h58.2l8.7-67.6h-67v-43.2c0-19.6 5.4-32.9 33.5-32.9h35.8v-60.5c-6.2-.8-27.4-2.7-52.2-2.7-51.6 0-87 31.5-87 89.4v49.9h-58.4v67.6h58.4V480H24.7C11.1 480 0 468.9 0 455.3V56.7C0 43.1 11.1 32 24.7 32h398.5c13.7 0 24.8 11.1 24.8 24.7z"/></svg>
                         @else 
@@ -100,8 +100,8 @@
                             </a>
                         @endif
                     </div>
-                    <div class="details">
-                        <div class="flex flex-col mt-4 mb-3">
+                    <div class="details flex justify-between flex-col">
+                        <div class="flex flex-col lg:mt-4 mb-3">
                             <div class="mb-1 font-semibold">Status</div> 
                             <div class="text-gray-500 text-sm">{{$movie['status']}}</div> 
                         </div>
@@ -115,9 +115,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col w-6/12 mr-12">
+                <div class="flex flex-col w-full mt-6 lg:mt-0 lg:w-6/12 mr-12">
                     <h1 class="text-xl font-bold">Keywords</h1>
-                    <div class="keywords flex flex-wrap mb-4 mt-4">
+                    <div class="keywords flex flex-wrap mb-4 mt-2 lg:mt-4">
                         @if ($keywords != 'No Keywords')
                             @foreach ($keywords as $keyword)
                                 <span class="border border-gray-300 bg-gray-300 py-2 

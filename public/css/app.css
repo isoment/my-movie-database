@@ -38124,6 +38124,7 @@ video {
 
 .cast-profile-img {
   min-height: 225px;
+  max-height: 225px;
 }
 
 .people-bio {
@@ -38136,7 +38137,6 @@ video {
 
 .popular-profile {
   max-height: 360px;
-  min-height: 200px;
 }
 
 /* Apply above 600px */

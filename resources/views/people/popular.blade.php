@@ -5,7 +5,7 @@
 
         <div class="my-12">
             <h1 class="text-3xl font-bold mb-8">Popular People</h1>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
                 @foreach ($popularPeople as $person)
                     {{-- Card --}}
                     <div class="popular top-rated-card w-35 lg:w-60 mr-4">

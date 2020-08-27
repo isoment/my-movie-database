@@ -22,8 +22,6 @@ class MoviesController extends Controller
                             ->get('https://api.themoviedb.org/3/movie/top_rated?page=' . $page)
                             ->json()['results'];
 
-        // dump($topRated);
-
         return view('movies.top-rated', [
             'topRated' => $topRated,
         ]);
@@ -40,6 +38,9 @@ class MoviesController extends Controller
         $movie = Http::withToken(config('services.tmdb.token'))
                             ->get('https://api.themoviedb.org/3/movie/' . $id . '?append_to_response=external_ids,keywords,credits,release_dates,videos,images')
                             ->json();
+
+        // Return 404 if doesn't exist
+        abort_if(isset($movie['success']) && $movie['success'] == false, 404);
 
         // Release Year
         $releaseYear = Carbon::parse($movie['release_date'])->format('Y');
@@ -100,9 +101,6 @@ class MoviesController extends Controller
         $facebook = 'https://www.facebook.com/' . $movie['external_ids']['facebook_id'];
         $twitter = 'https://twitter.com/' . $movie['external_ids']['twitter_id'];
         $instagram = 'https://www.instagram.com/' . $movie['external_ids']['instagram_id'];
-
-        // Dumps
-        dump($movie);
 
         return view('movies.show', [
             'movie' => $movie,
