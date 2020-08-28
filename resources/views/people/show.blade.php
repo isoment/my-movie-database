@@ -2,13 +2,21 @@
 
 @section('content')
     <div class="container mx-auto px-9">
-        <div class="grid grid-cols-4 gap-6 my-12">
-            <div class="col-span-1">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 my-12">
+            <div class="md:col-span-1">
                 <div class="profile-photo">
                     <img src="{{ $people['profile_path'] ? 
                                  'https://image.tmdb.org/t/p/w300' . $people['profile_path'] :
                                  '/img/No-Profile-Pic.svg' }}" alt="Profile Photo"
                          class="rounded-lg {{ $people['profile_path'] ? '' : 'bg-gray-100 height-no-profile'}}">
+                </div>
+                <div class="md:hidden mt-4">
+                    <h1 class="text-3xl font-bold">{{$people['name']}}</h1>
+                    @if (isset($people['birthday']))
+                        <p class="text-gray-500 text-sm mt-2">{{$age}} years old</p>
+                    @endif
+                    <h3 class="text-lg font-bold mt-12 mb-4">Biography</h3>
+                    <p class="people-bio text-gray-500 text-sm leading-relaxed">{{$people['biography'] ? $people['biography'] : 'No Biography.'}}</p>
                 </div>
                 <div class="social-links flex flex-row mt-8 px-2">
                     @if ($facebook == 'https://www.facebook.com/')
@@ -71,8 +79,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-span-3 p-2">
-                <div>
+            <div class="md:col-span-3 p-2">
+                <div class="hidden md:block">
                     <h1 class="text-3xl font-bold">{{$people['name']}}</h1>
                     @if (isset($people['birthday']))
                         <p class="text-gray-500 text-sm mt-2">{{$age}} years old</p>
@@ -99,22 +107,21 @@
                         @endforeach
                     </div>
                 </div>
-
                 <div class="acting">
                     <h1 class="text-xl font-bold mt-8 mb-4">Acting</h1>
                     <table class="table-auto text-primary-blue-dark text-sm w-full shadow-lg">
                         <tbody>
                             @foreach ($acting as $item)
                                 <tr>
-                                    <td class="border px-4 py-2 bg-gray-100">
+                                    <td class="border tiny-text md:text-xs px-4 py-2 bg-gray-100">
                                         <div class="px-2">
                                             <span class="mr-6">{{$item['creditsYear']}}</span>
                                             <a href="{{ isset($item['title']) ? route('movies.show', $item['id']) : route('tv.show', $item['id']) }}"
                                             class="font-semibold">
-                                                {{$item['creditsTitle']}}
+                                                {{Str::limit($item['creditsTitle'], 40)}}
                                             </a>
-                                            <span class="text-gray-500 text-sm font-light">as</span>
-                                            <span>{{$item['character']}}</span>
+                                            <span class="text-gray-500 font-light hidden md:inline-block">as</span>
+                                            <span class="hidden md:inline-block">{{$item['character']}}</span>
                                         </div>
                                     </td>
                                 </tr>
@@ -122,22 +129,21 @@
                         </tbody>
                     </table>
                 </div>
-
                 <div class="production">
                     <h1 class="text-xl font-bold mt-8 mb-4">Production</h1>
                     <table class="table-auto text-primary-blue-dark text-sm w-full shadow-lg">
                         <tbody>
                             @foreach ($production as $item)
                                 <tr>
-                                    <td class="border px-4 py-2 bg-gray-100">
+                                    <td class="border tiny-text md:text-xs px-4 py-2 bg-gray-100">
                                         <div class="px-2">
                                             <span class="mr-6">{{$item['creditsYear']}}</span>
                                             <a href="{{ isset($item['title']) ? route('movies.show', $item['id']) : route('tv.show', $item['id']) }}"
                                             class="font-semibold">
                                                 {{$item['creditsTitle']}}
                                             </a>
-                                            <span class="text-gray-500 text-sm font-light">as</span>
-                                            <span>{{$item['job']}}</span>
+                                            <span class="text-gray-500 font-light hidden md:inline-block">as</span>
+                                            <span class="hidden md:inline-block">{{$item['job']}}</span>
                                         </div>
                                     </td>
                                 </tr>
@@ -145,8 +151,6 @@
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
         </div>
     </div>

@@ -9,7 +9,7 @@
                 @foreach ($popularPeople as $person)
                     {{-- Card --}}
                     <div class="popular top-rated-card w-35 lg:w-60 mr-4">
-                        <a href="{{route('movies.show', $person['id'])}}">
+                        <a href="{{route('people.show', $person['id'])}}">
                             <img src="{{$person['profile_path'] ? 
                                         'https://image.tmdb.org/t/p/w500/' . $person['profile_path'] :
                                         '/img/No-Profile-Popular.png'}}" 

@@ -4,7 +4,7 @@
     <div class="container mx-auto px-9">
 
         <div class="flex flex-col md:flex-row my-12">
-            <div class="poster lg:mr-12 {{ $movie['poster_path'] ? '' : 'bg-gray-100' }}">
+            <div class="poster md:mr-12 {{ $movie['poster_path'] ? '' : 'bg-gray-100' }}">
                 <img src="{{ $movie['poster_path'] ? 'https://image.tmdb.org/t/p/w300/' . $movie['poster_path'] : '/img/No-Poster.svg' }}" 
                      alt="poster" class="rounded-lg text-center">
             </div>
@@ -115,7 +115,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col w-full mt-6 lg:mt-0 lg:w-6/12 mr-12">
+                <div class="flex flex-col w-full mt-6 lg:mt-0 lg:w-6/12 mx-0 md:mx-10 lg:mx-0">
                     <h1 class="text-xl font-bold">Keywords</h1>
                     <div class="keywords flex flex-wrap mb-4 mt-2 lg:mt-4">
                         @if ($keywords != 'No Keywords')

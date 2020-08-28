@@ -49,6 +49,10 @@
     max-height: 360px;
 }
 
+.tiny-text {
+    font-size: 9px;
+}
+
 /* Apply above 600px */
 @media only screen and (min-width: 600px) {
     .poster {
