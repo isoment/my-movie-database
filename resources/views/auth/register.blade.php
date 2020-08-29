@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto">
+    <div class="container mx-auto my-8">
         <div class="flex flex-wrap justify-center">
             <div class="w-full max-w-sm">
                 <div class="flex flex-col break-words bg-white border-2 rounded shadow-md">
@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="flex flex-wrap">
-                            <button type="submit" class="inline-block align-middle text-center select-none border font-bold whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700">
+                            <button type="submit" class="inline-block align-middle text-center select-none border font-bold whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-gray-100 bg-primary-red hover:text-gray-200">
                                 {{ __('Register') }}
                             </button>
 

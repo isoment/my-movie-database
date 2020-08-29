@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto">
+    <div class="container mx-auto my-8">
         <div class="flex flex-wrap justify-center">
             <div class="w-full max-w-sm">
 
@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="flex flex-wrap">
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            <button type="submit" class="bg-primary-red hover:text-gray-200 text-gray-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                                 {{ __('Send Password Reset Link') }}
                             </button>
 

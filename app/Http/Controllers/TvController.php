@@ -86,6 +86,8 @@ class TvController extends Controller
         $twitter = 'https://twitter.com/' . $tvShow['external_ids']['twitter_id'];
         $instagram = 'https://www.instagram.com/' . $tvShow['external_ids']['instagram_id'];
 
+        dump($tvShow);
+
         return view('tv.show', [
             'tvShow' => $tvShow,
             'releaseYear' => $releaseYear,
