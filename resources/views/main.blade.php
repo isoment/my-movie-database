@@ -110,6 +110,11 @@
         </section>
 
     </div>
+
+    <x-footer/>
+    
 @endsection
+
+
 
 

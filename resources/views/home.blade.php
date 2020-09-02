@@ -10,7 +10,7 @@
                 </div>
             @endif
 
-            <div class="flex flex-col break-words bg-white border rounded shadow-md">
+            <div class="flex flex-col break-words bg-white border rounded shadow-md my-8">
 
                 <div class="font-semibold bg-gray-200 text-gray-700 py-3 px-6 mb-0">
                     Dashboard
