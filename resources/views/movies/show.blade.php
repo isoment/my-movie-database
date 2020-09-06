@@ -25,18 +25,21 @@
                                     border-primary-blue-dark py-2 px-3 rounded-full font-righteous">{{$vote}}%</div>
                         <div class="ml-2 font-semibold text-sm">User <br>Score</div>
                     </div>
-                    <div class="mt-6 ml-4">
-
-                        <form action="{{route('favorites.add', $movie['id'])}}" method="POST" class="mb-0">
-                            @csrf
-                            <span title="Favorite">
-                                <button type="submit" class="focus:outline-none">
-                                    <svg viewBox="0 0 20 20" fill="currentColor" class="star w-8 h-8 text-primary-gold"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                </button>
-                            </span>
-                        </form>
-
-                    </div>
+                    @auth
+                        <div class="mt-6 ml-4">
+                            <form action="{{route('favorite.movie.add', $movie['id'])}}" method="POST" class="mb-0">
+                                @csrf
+                                <input type="hidden" name="title" value="{{$movie['title']}}">
+                                <input type="hidden" name="release_date" value="{{\Carbon\Carbon::parse($movie['release_date'])->format('M, d Y')}}">
+                                <input type="hidden" name="poster_path" value="{{$movie['poster_path']}}">
+                                <span title="Favorite">
+                                    <button type="submit" class="focus:outline-none">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" class="star w-8 h-8 text-primary-gold"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                    </button>
+                                </span>
+                            </form>
+                        </div>
+                    @endauth
                 </div>
                 <div class="overview text-gray-500 mt-8">
                     <h2 class="italic mb-4">{{$movie['tagline'] ?? ''}}</h2>

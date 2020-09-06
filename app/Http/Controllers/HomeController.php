@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Favorite;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $favoritesMovies = Favorite::where('type', 'Movie')
+            ->orderBy('created_at', 'desc')
+            ->take(12)
+            ->get();
+
+        $favoritesTV = Favorite::where('type', 'TV')
+            ->orderBy('created_at', 'desc')
+            ->take(12)
+            ->get();
+
+        return view('home', [
+            'favoritesMovies' => $favoritesMovies,
+            'favoritesTV' => $favoritesTV,
+        ]);
     }
 }

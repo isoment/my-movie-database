@@ -18,6 +18,9 @@ class CreateFavoritesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('type');
             $table->unsignedBigInteger('media_id');
+            $table->string('title');
+            $table->string('release_date');
+            $table->string('poster_path')->nullable();
             $table->timestamps();
         });
     }

@@ -19,7 +19,8 @@ Route::get('/movies/top-rated', 'MoviesController@topRated')->name('movies.top')
 Route::get('/movies/top-rated/{page?}', 'MoviesController@topRated');
 Route::get('/movies/{id}', 'MoviesController@show')->name('movies.show');
 
-Route::post('/movies/{id}/favorite', 'FavoritesController@add')->name('favorites.add');
+Route::post('/movies/{id}/favorite', 'FavoritesController@addFavoriteMovie')->name('favorite.movie.add');
+Route::post('/tv/{id}/favorite', 'FavoritesController@addFavoriteTV')->name('favorite.tv.add');
 
 Route::get('/tv/top-rated', 'TvController@topRated')->name('tv.top');
 Route::get('/tv/top-rated/{page?}', 'TvController@topRated');
