@@ -22,6 +22,9 @@ Route::get('/movies/{id}', 'MoviesController@show')->name('movies.show');
 Route::post('/movies/{id}/favorite', 'FavoritesController@addFavoriteMovie')->name('favorite.movie.add');
 Route::post('/tv/{id}/favorite', 'FavoritesController@addFavoriteTV')->name('favorite.tv.add');
 
+Route::delete('movies/{id}/unfavorite', 'FavoritesController@deleteFavoriteMovie')->name('favorite.movie.delete');
+Route::delete('tv/{id}/unfavorite', 'FavoritesController@deleteFavoriteTV')->name('favorite.tv.delete');
+
 Route::get('/tv/top-rated', 'TvController@topRated')->name('tv.top');
 Route::get('/tv/top-rated/{page?}', 'TvController@topRated');
 Route::get('/tv/{id}', 'TvController@show')->name('tv.show');

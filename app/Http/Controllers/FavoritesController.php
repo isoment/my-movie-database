@@ -50,4 +50,26 @@ class FavoritesController extends Controller
             return redirect(route('tv.show', $id));
         }
     }
+
+    public function deleteFavoriteMovie($id)
+    {
+        $favorite = Favorite::where('media_id', $id)
+                            ->where('type', 'Movie')
+                            ->where('user_id', auth()->id());
+
+        $favorite->delete();
+
+        return redirect(route('home'));
+    }
+
+    public function deleteFavoriteTV($id)
+    {
+        $favorite = Favorite::where('media_id', $id)
+                            ->where('type', 'TV')
+                            ->where('user_id', auth()->id());
+
+        $favorite->delete();
+
+        return redirect(route('home'));
+    }
 }

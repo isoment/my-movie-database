@@ -25,14 +25,18 @@ class HomeController extends Controller
     public function index()
     {
         $favoritesMovies = Favorite::where('type', 'Movie')
+            ->where('user_id', auth()->id())
             ->orderBy('created_at', 'desc')
             ->take(12)
             ->get();
 
         $favoritesTV = Favorite::where('type', 'TV')
+            ->where('user_id', auth()->id())
             ->orderBy('created_at', 'desc')
             ->take(12)
             ->get();
+
+        // dump($favoritesMovies);
 
         return view('home', [
             'favoritesMovies' => $favoritesMovies,
