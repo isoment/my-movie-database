@@ -26,7 +26,12 @@
             <h2 class="font-bold md:mb-2 uppercase text-lg">API</h2>
             <a href="https://www.themoviedb.org" class="mt-1">The Movie Database</a>
             <a href="https://www.themoviedb.org/documentation/api" class="mt-1">API Documentation</a>
-            <a href="#" class="mt-1">Attribution</a>
+            <a href="{{ route('attribution') }}" class="mt-1">Attribution</a>
         </div>
+    </div>
+    <div class="text-center text-xs font-normal tracking-wide leading-snug">
+        This product uses the TMDB API but is not endorsed or certified by TMDb.<br>
+        Please see the Atrribution section for details.<br>
+        2020
     </div>
 </footer>

@@ -67,4 +67,9 @@ class HomeController extends Controller
             'favoritesTV' => $favoritesTV,
         ]);
     }
+
+    public function attribution()
+    {
+        return view('attribution');
+    }
 }

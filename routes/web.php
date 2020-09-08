@@ -37,6 +37,7 @@ Route::get('/people/{id}', 'PeopleController@show')->name('people.show');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('home/movies', 'HomeController@movies')->name('favorite.movies');
 Route::get('home/tv', 'HomeController@tv')->name('favorite.tv');
+Route::get('attribution', 'HomeController@attribution')->name('attribution');
 
 Auth::routes();
 
