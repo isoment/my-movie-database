@@ -9,11 +9,11 @@
         </div>
         <div class="md:ml-10 mt-8 md:mt-9 flex flex-col">
             <h2 class="font-bold md:mb-2 uppercase text-lg">The Basics</h2>
-            <a href="#" class="mt-1">Movies</a>
-            <a href="#" class="mt-1">TV Shows</a>
-            <a href="#" class="mt-1">People</a>
-            <a href="#" class="mt-1">Trending</a>
-            <a href="#" class="mt-1">Now Playing</a>
+            <a href="{{ route('movies.top') }}" class="mt-1">Movies</a>
+            <a href="{{ route('tv.top') }}" class="mt-1">TV Shows</a>
+            <a href="{{ route('people.popular') }}" class="mt-1">People</a>
+            <a href="{{ route('favorite.movies') }}" class="mt-1">Favorite Movies</a>
+            <a href="{{ route('favorite.tv') }}" class="mt-1">Favorite TV</a>
         </div>
         <div class="md:ml-10 mt-8 md:mt-9 flex flex-col">
             <h2 class="font-bold md:mb-2 uppercase text-lg">Other</h2>

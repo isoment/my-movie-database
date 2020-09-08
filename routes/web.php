@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,8 @@ Route::get('/people/popular/{page?}', 'PeopleController@popular');
 Route::get('/people/{id}', 'PeopleController@show')->name('people.show');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home/movies', 'HomeController@movies')->name('favorite.movies');
+Route::get('home/tv', 'HomeController@tv')->name('favorite.tv');
 
 Auth::routes();
 

@@ -43,4 +43,28 @@ class HomeController extends Controller
             'favoritesTV' => $favoritesTV,
         ]);
     }
+
+    public function movies()
+    {
+        $favoritesMovies = Favorite::where('type', 'Movie')
+            ->where('user_id', auth()->id())
+            ->orderBy('created_at', 'desc')
+            ->paginate(24);
+
+        return view('favorites.movies', [
+            'favoritesMovies' => $favoritesMovies,
+        ]);
+    }
+
+    public function tv()
+    {
+        $favoritesTV = Favorite::where('type', 'TV')
+            ->where('user_id', auth()->id())
+            ->orderBy('created_at', 'desc')
+            ->paginate(24);
+
+        return view('favorites.tv', [
+            'favoritesTV' => $favoritesTV,
+        ]);
+    }
 }
