@@ -67,7 +67,7 @@
                             @else
                                 <a href="{{ route('home') }}"
                                     class="block sm:font-semibold sm:inline-block mt-4 sm:mt-0 text-gray-300 
-                                    sm:text-white mr-4 ml-4 hover:text-gray-200">Home</a>
+                                    sm:text-white mr-4 ml-4 hover:text-gray-200">Favorites</a>
                                 <a href="{{ route('logout') }}"
                                     class="sm:font-semibold block sm:inline-block mt-4 sm:mt-0 text-gray-300 sm:text-white ml-4 mr-4 hover:text-gray-200"
                                     onclick="event.preventDefault();

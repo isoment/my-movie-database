@@ -3,6 +3,8 @@
 @section('content')
     <div class="container mx-auto px-9">
 
+        <x-messages/>
+
         <div class="flex flex-col md:flex-row my-12">
             <div class="poster md:mr-12 {{ $tvShow['poster_path'] ? '' : 'bg-gray-100' }}">
                 <img src="{{ $tvShow['poster_path'] ? 'https://image.tmdb.org/t/p/w300/' . $tvShow['poster_path'] : '/img/No-Poster.svg' }}" 

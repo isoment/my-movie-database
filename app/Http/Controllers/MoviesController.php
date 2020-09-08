@@ -101,8 +101,6 @@ class MoviesController extends Controller
         $facebook = 'https://www.facebook.com/' . $movie['external_ids']['facebook_id'];
         $twitter = 'https://twitter.com/' . $movie['external_ids']['twitter_id'];
         $instagram = 'https://www.instagram.com/' . $movie['external_ids']['instagram_id'];
-
-        dump($movie);
         
         return view('movies.show', [
             'movie' => $movie,

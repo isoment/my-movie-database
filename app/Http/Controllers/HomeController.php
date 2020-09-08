@@ -27,13 +27,13 @@ class HomeController extends Controller
         $favoritesMovies = Favorite::where('type', 'Movie')
             ->where('user_id', auth()->id())
             ->orderBy('created_at', 'desc')
-            ->take(12)
+            ->take(6)
             ->get();
 
         $favoritesTV = Favorite::where('type', 'TV')
             ->where('user_id', auth()->id())
             ->orderBy('created_at', 'desc')
-            ->take(12)
+            ->take(6)
             ->get();
 
         // dump($favoritesMovies);

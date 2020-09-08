@@ -14,7 +14,7 @@ class FavoritesController extends Controller
                          ->where('type', 'Movie')->get();
 
         if (! $check->isEmpty()) {
-            return redirect(route('movies.show', $id));
+            return redirect(route('movies.show', $id))->with('error', 'Movie is already favorited!');
         } else {
             $favoriteMovie = new Favorite;
             $favoriteMovie->user_id = auth()->id();
@@ -25,7 +25,7 @@ class FavoritesController extends Controller
             $favoriteMovie->poster_path = $request['poster_path'];
             $favoriteMovie->save();
     
-            return redirect(route('movies.show', $id));
+            return redirect(route('movies.show', $id))->with('success', 'Movie favorited!');
         }
     }
 
@@ -36,7 +36,7 @@ class FavoritesController extends Controller
                          ->where('type', 'TV')->get();
 
         if (! $check->isEmpty()) {
-            return redirect(route('tv.show', $id));
+            return redirect(route('tv.show', $id))->with('error', 'Show is already favorited!');
         } else {
             $favoriteTV = new Favorite;
             $favoriteTV->user_id = auth()->id();
@@ -47,7 +47,7 @@ class FavoritesController extends Controller
             $favoriteTV->poster_path = $request['poster_path'];
             $favoriteTV->save();
     
-            return redirect(route('tv.show', $id));
+            return redirect(route('tv.show', $id))->with('success', 'Show favorited!');
         }
     }
 
@@ -59,7 +59,7 @@ class FavoritesController extends Controller
 
         $favorite->delete();
 
-        return redirect(route('home'));
+        return back();
     }
 
     public function deleteFavoriteTV($id)
@@ -70,6 +70,6 @@ class FavoritesController extends Controller
 
         $favorite->delete();
 
-        return redirect(route('home'));
+        return back();
     }
 }
