@@ -131,8 +131,6 @@ class PeopleController extends Controller
         // Credit Count
         $creditCount = $production->count() + $acting->count();
 
-        dump($people);
-
         return view('people.show', [
             'people' => $people,
             'knownFor' => $knownFor,
