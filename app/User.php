@@ -39,6 +39,20 @@ class User extends Authenticatable
 
     public function favorites() 
     {
-        return $this->hasMany('App\Favorites', 'user_id');
+        return $this->hasMany('App\Favorite', 'user_id');
+    }
+
+    /**
+     *  Determine if a user has the media as a favorite
+     * 
+     *  @param int $mediaId
+     *  @param string $type
+     *  @return bool
+     */
+    public function userHasFavorite(int $mediaId, string $type = 'Movie') : bool
+    {
+        return $this->favorites->where('media_id', $mediaId)
+            ->where('type', $type)
+            ->isNotEmpty();
     }
 }

@@ -86,6 +86,13 @@ class TvController extends Controller
         $twitter = 'https://twitter.com/' . $tvShow['external_ids']['twitter_id'];
         $instagram = 'https://www.instagram.com/' . $tvShow['external_ids']['instagram_id'];
 
+        // User favorite
+        if (auth()->user()) {
+            $userFavorite = auth()->user()->userHasFavorite($id, 'TV');
+        } else {
+            $userFavorite = false;
+        }
+
         return view('tv.show', [
             'tvShow' => $tvShow,
             'releaseYear' => $releaseYear,
@@ -102,6 +109,7 @@ class TvController extends Controller
             'facebook' => $facebook,
             'twitter' => $twitter,
             'instagram' => $instagram,
+            'userFavorite' => $userFavorite
         ]);
     }
 }

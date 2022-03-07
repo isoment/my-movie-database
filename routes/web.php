@@ -40,6 +40,3 @@ Route::get('home/tv', 'HomeController@tv')->name('favorite.tv');
 Route::get('attribution', 'HomeController@attribution')->name('attribution');
 
 Auth::routes();
-
-
-

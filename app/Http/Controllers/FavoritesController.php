@@ -59,7 +59,7 @@ class FavoritesController extends Controller
 
         $favorite->delete();
 
-        return back();
+        return back()->with('error', 'Movie unfavorited');
     }
 
     public function deleteFavoriteTV($id)
@@ -70,6 +70,6 @@ class FavoritesController extends Controller
 
         $favorite->delete();
 
-        return back();
+        return back()->with('error', 'Show unfavorited');
     }
 }

@@ -29,17 +29,35 @@
                     </div>
                     @auth
                         <div class="mt-6 ml-4">
+                            @if ($userFavorite)
+                            <form action="{{route('favorite.tv.delete', $tvShow['id'])}}" method="POST" class="mb-0">
+                                @csrf
+                                @method('DELETE')
+                                <button class="flex items-center text-sm bg-red-400 font-semibold focus:outline-none
+                                               text-white rounded-md px-2 py-1" 
+                                        type="submit">
+                                    <span class="ml-2">Unfavorite</span>
+                                    <span title="Unfavorite">
+                                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                    </span>
+                                </button>
+                            </form>
+                            @else
                             <form action="{{route('favorite.tv.add', $tvShow['id'])}}" method="POST" class="mb-0">
                                 @csrf
                                 <input type="hidden" name="title" value="{{$tvShow['name']}}">
                                 <input type="hidden" name="first_air_date" value="{{\Carbon\Carbon::parse($firstAir)->format('M, d Y')}}">
                                 <input type="hidden" name="poster_path" value="{{$tvShow['poster_path']}}">
-                                <span title="Favorite">
-                                    <button type="submit" class="focus:outline-none">
-                                        <svg viewBox="0 0 20 20" fill="currentColor" class="star w-8 h-8 text-primary-gold"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                    </button>
-                                </span>
+                                <button class="flex items-center text-sm bg-green-400 font-semibold focus:outline-none
+                                                text-white rounded-md px-2 py-1" 
+                                        type="submit">
+                                    <span class="ml-2">Favorite</span>
+                                    <span title="Favorite">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" class="star w-5 h-5 text-white"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                    </span>
+                                </button>
                             </form>
+                            @endif
                         </div>
                     @endauth
                 </div>

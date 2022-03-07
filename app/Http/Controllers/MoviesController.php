@@ -101,6 +101,13 @@ class MoviesController extends Controller
         $facebook = 'https://www.facebook.com/' . $movie['external_ids']['facebook_id'];
         $twitter = 'https://twitter.com/' . $movie['external_ids']['twitter_id'];
         $instagram = 'https://www.instagram.com/' . $movie['external_ids']['instagram_id'];
+
+        // User favorite
+        if (auth()->user()) {
+            $userFavorite = auth()->user()->userHasFavorite($id, 'Movie');
+        } else {
+            $userFavorite = false;
+        }
         
         return view('movies.show', [
             'movie' => $movie,
@@ -119,6 +126,7 @@ class MoviesController extends Controller
             'facebook' => $facebook,
             'twitter' => $twitter,
             'instagram' => $instagram,
+            'userFavorite' => $userFavorite
         ]);
     }
 
