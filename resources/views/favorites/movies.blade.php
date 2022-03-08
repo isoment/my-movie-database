@@ -6,9 +6,8 @@
         <div class="my-12">
             <div class="flex items-center mb-8">
                 <h1 class="text-2xl font-bold mr-2 md:mr-4">Favorite Movies</h1>
-                <a href="#" class="flex items-center bg-primary-blue-med font-bold text-sm rounded-full pl-4 pr-3">
-                    <span class="mr-1 red-gradient">More</span>
-                    <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-down chevron-more h-5 text-primary-red"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <a href="{{route('home')}}" class="flex items-center bg-primary-blue-med font-bold text-sm rounded-full pl-4 py-1 pr-3">
+                    <span class="mr-1 red-gradient">Back</span>
                 </a>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-10">

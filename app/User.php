@@ -3,8 +3,10 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class User extends Authenticatable
 {
@@ -54,5 +56,32 @@ class User extends Authenticatable
         return $this->favorites->where('media_id', $mediaId)
             ->where('type', $type)
             ->isNotEmpty();
+    }
+
+    /**
+     *  Get a short listing of the users favorites
+     * 
+     *  @param string $type
+     *  @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function favoritesShortIndex(string $type = 'Movie') : Collection
+    {
+        return $this->favorites->where('type', $type)
+            ->sortByDesc('created_at')
+            ->take(6);
+    }
+
+    /**
+     *  Get a short listing of the users favorites
+     * 
+     *  @param string $type
+     *  @return \Illuminate\Pagination\LengthAwarePaginator;
+     */
+    public function favoritesIndex(string $type = 'Movie') : LengthAwarePaginator
+    {
+        return Favorite::where('user_id', $this->id)
+            ->where('type', $type)
+            ->orderBy('created_at', 'desc')
+            ->paginate(24);
     }
 }

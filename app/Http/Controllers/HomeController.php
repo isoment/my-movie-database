@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Favorite;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
@@ -18,53 +19,34 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     *  Show the home with a short index of users favorite
+     *  tv shows and movies.
      */
-    public function index()
+    public function index() : View
     {
-        $favoritesMovies = Favorite::where('type', 'Movie')
-            ->where('user_id', auth()->id())
-            ->orderBy('created_at', 'desc')
-            ->take(6)
-            ->get();
-
-        $favoritesTV = Favorite::where('type', 'TV')
-            ->where('user_id', auth()->id())
-            ->orderBy('created_at', 'desc')
-            ->take(6)
-            ->get();
-
-        // dump($favoritesMovies);
-
         return view('home', [
-            'favoritesMovies' => $favoritesMovies,
-            'favoritesTV' => $favoritesTV,
+            'favoritesMovies' => auth()->user()->favoritesShortIndex(),
+            'favoritesTV' => auth()->user()->favoritesShortIndex('TV'),
         ]);
     }
 
-    public function movies()
+    /**
+     *  Show a page with a paginated index of users favorite movies
+     */
+    public function movies() : View
     {
-        $favoritesMovies = Favorite::where('type', 'Movie')
-            ->where('user_id', auth()->id())
-            ->orderBy('created_at', 'desc')
-            ->paginate(24);
-
         return view('favorites.movies', [
-            'favoritesMovies' => $favoritesMovies,
+            'favoritesMovies' => auth()->user()->favoritesIndex(),
         ]);
     }
 
-    public function tv()
+    /**
+     *  Show a page with a paginated index of users favorite tv shows
+     */
+    public function tv() : View
     {
-        $favoritesTV = Favorite::where('type', 'TV')
-            ->where('user_id', auth()->id())
-            ->orderBy('created_at', 'desc')
-            ->paginate(24);
-
         return view('favorites.tv', [
-            'favoritesTV' => $favoritesTV,
+            'favoritesTV' => auth()->user()->favoritesIndex('TV'),
         ]);
     }
 
