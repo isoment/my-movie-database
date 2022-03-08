@@ -2,70 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\TheMovieDBService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\View\View;
 
 class MainController extends Controller
 {
+    private TheMovieDBService $tmdb;
+
+    public function __construct(TheMovieDBService $theMovieDBService)
+    {
+        $this->tmdb = $theMovieDBService;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function index()
+    public function index() : View
     {
-        $popularMovies = Http::withToken(config('services.tmdb.token'))
-                             ->get('https://api.themoviedb.org/3/movie/popular')
-                             ->json()['results'];
-
-        $popularTV = Http::withToken(config('services.tmdb.token'))
-                         ->get('https://api.themoviedb.org/3/tv/popular')
-                         ->json()['results'];
-
-        $trending = Http::withToken(config('services.tmdb.token'))
-                        ->get('https://api.themoviedb.org/3/trending/movietv/week')
-                        ->json()['results'];
-
         return view('main', [
-            'popularMovies' => $popularMovies,
-            'popularTV' => $popularTV,
-            'trending' => $trending,
+            'popularMovies' => $this->tmdb->popularMovies(),
+            'popularTV' => $this->tmdb->popularTV(),
+            'trending' => $this->tmdb->thisWeekTrending(),
         ]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
 }
