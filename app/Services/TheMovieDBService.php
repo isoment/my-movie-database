@@ -101,4 +101,33 @@ class TheMovieDBService
                 '?append_to_response=credits,content_ratings,videos,images,external_ids,keywords'
             )->json();
     }
+
+    /**
+     *  A paginated index of popular people
+     * 
+     *  @param int $page
+     *  @return array
+     */
+    public function popularPeople(int $page) : array
+    {
+        return Http::withToken(config('services.tmdb.token'))
+            ->get('https://api.themoviedb.org/3/person/popular?page=' . $page)
+            ->json()['results'];
+    }
+
+    /**
+     *  Show a person and related details
+     * 
+     *  @param int $id
+     *  @return array
+     */
+    public function showPerson(int $id) : array
+    {
+        return Http::withToken(config('services.tmdb.token'))
+            ->get(
+                'https://api.themoviedb.org/3/person/' . 
+                $id . 
+                '?append_to_response=movie_credits,tv_credits,combined_credits,external_ids'
+            )->json();
+    }
 }

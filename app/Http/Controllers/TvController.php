@@ -18,7 +18,7 @@ class TvController extends Controller
         abort_if($page > 500, 204);
 
         return view('tv.top-rated', [
-            'topRated' => $this->tmdb->popularTV($page),
+            'topRated' => $this->tmdb->topRatedTV($page)
         ]);
     }
 
