@@ -18,7 +18,7 @@
                             <img src="{{$favorite['poster_path'] ?
                                         'https://image.tmdb.org/t/p/w500/' . $favorite['poster_path'] :
                                         '/img/No-Poster-Top.png' }}" alt="poster"
-                                class="rounded-lg shadow-lg popular-profile {{$favorite['poster_path'] ? '' : 'bg-gray-100'}}">
+                                class="rounded-lg shadow-lg favorites-index-poster {{$favorite['poster_path'] ? '' : 'bg-gray-100'}}">
                         </a>
                         <div>
                             <h5 class="font-semibold text-sm mt-4">{{$favorite['title']}}</h5>
@@ -26,7 +26,7 @@
                         </div>
                         <div class="badge text-xs absolute bg-white text-primary-red 
                                     rounded-full px-1 sm:px-2 sm:py-1 border-2 border-primary-red
-                                    top-5 -mt-7 right-0 mr-2">
+                                    top-5 -mt-7 lg:right-2 mr-2">
                             <form action="{{ route('favorite.movie.delete', $favorite['media_id']) }}"
                                     method="POST">
                                 @csrf

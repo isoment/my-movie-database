@@ -49,6 +49,12 @@
     max-height: 360px;
 }
 
+.favorites-index-poster {
+    min-height: 228px;
+    max-height: 228px;
+    max-width: 150px;
+}
+
 .tiny-text {
     font-size: 9px;
 }

@@ -43,4 +43,30 @@ class TheMovieDBService
             ->get('https://api.themoviedb.org/3/trending/movietv/week')
             ->json()['results'];
     }
+
+    /**
+     *  A paginated index of the top rated movies
+     * 
+     *  @param int $page the current page
+     *  @return array
+     */
+    public function topRatedMovies(int $page) : array
+    {
+        return Http::withToken(config('services.tmdb.token'))
+            ->get('https://api.themoviedb.org/3/movie/top_rated?page=' . $page)
+            ->json()['results'];
+    }
+
+    /**
+     *  Show a movie and related details
+     */
+    public function showMovie(int $id) : array
+    {
+        return Http::withToken(config('services.tmdb.token'))
+            ->get(
+                'https://api.themoviedb.org/3/movie/' . 
+                $id . 
+                '?append_to_response=external_ids,keywords,credits,release_dates,videos,images')
+            ->json();
+    }
 }
