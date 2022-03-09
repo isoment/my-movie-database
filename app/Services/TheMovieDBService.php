@@ -59,6 +59,9 @@ class TheMovieDBService
 
     /**
      *  Show a movie and related details
+     * 
+     *  @param int $id
+     *  @return array
      */
     public function showMovie(int $id) : array
     {
@@ -66,7 +69,36 @@ class TheMovieDBService
             ->get(
                 'https://api.themoviedb.org/3/movie/' . 
                 $id . 
-                '?append_to_response=external_ids,keywords,credits,release_dates,videos,images')
-            ->json();
+                '?append_to_response=external_ids,keywords,credits,release_dates,videos,images'
+            )->json();
+    }
+
+    /**
+     *  A paginated index of top rated tv shows
+     * 
+     *  @param int $page the current page
+     *  @return array
+     */
+    public function topRatedTV(int $page) : array
+    {
+        return Http::withToken(config('services.tmdb.token'))
+            ->get('https://api.themoviedb.org/3/tv/top_rated?page=' . $page)
+            ->json()['results'];
+    }
+
+    /**
+     *  Show a TV show and related details
+     * 
+     *  @param int $id
+     *  @return array
+     */
+    public function showTV(int $id) : array
+    {
+        return Http::withToken(config('services.tmdb.token'))
+            ->get(
+                'https://api.themoviedb.org/3/tv/' . 
+                $id . 
+                '?append_to_response=credits,content_ratings,videos,images,external_ids,keywords'
+            )->json();
     }
 }

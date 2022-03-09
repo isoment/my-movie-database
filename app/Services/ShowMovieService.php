@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 class ShowMovieService extends TheMovieDBService
 {
+    public function __construct(private DataTransformService $dt)
+    {}
+
     public function movie(int $id) : View
     {
         $movie = $this->showMovie($id);
@@ -19,28 +21,23 @@ class ShowMovieService extends TheMovieDBService
 
         return view('movies.show', [
             'movie' => $movie,
-            'releaseYear' => $this->releaseYear($movie['release_date']),
+            'releaseYear' => $this->dt->formatAsYear($movie['release_date']),
             'rating' => $this->mpaaRating($movie['release_dates']['results']),
-            'releaseDate' => $this->releaseDate($movie['release_date']),
-            'genres' => $this->genres($movie['genres']),
+            'releaseDate' => $this->dt->formatAsSlashDate($movie['release_date']),
+            'genres' => $this->dt->genres($movie['genres']),
             'runTime' => $this->runTime($movie['runtime']),
-            'vote' => $this->votePercentage($movie['vote_average']),
+            'vote' => $this->dt->votePercentage($movie['vote_average']),
             'selectCrew' => $this->selectedCrew($movie['credits']['crew']),
             'producers' => $this->producers($movie['credits']['crew']),
             'cast' => $this->cast($movie['credits']['cast']),
-            'keywords' => $this->keywords($movie['keywords']['keywords']),
+            'keywords' => $this->dt->keywords($movie['keywords']['keywords']),
             'budget' => $this->monetaryFormat($movie['budget']),
             'revenue' => $this->monetaryFormat($movie['revenue']),
             'facebook' => 'https://www.facebook.com/' . $movie['external_ids']['facebook_id'],
             'twitter' => 'https://twitter.com/' . $movie['external_ids']['twitter_id'],
             'instagram' => 'https://www.instagram.com/' . $movie['external_ids']['instagram_id'],
-            'userFavorite' => $this->isUserFavorite($id)
+            'userFavorite' => $this->dt->isUserFavorite($id, 'Movie')
         ]);
-    }
-
-    public function releaseYear(string $releaseYear) : string
-    {
-        return Carbon::parse($releaseYear)->format('Y');
     }
 
     public function mpaaRating(array $releaseDateResults) : string
@@ -55,24 +52,9 @@ class ShowMovieService extends TheMovieDBService
         return 'NR';
     }
 
-    public function releaseDate(string $releaseDate) : string
-    {
-        return Carbon::parse($releaseDate)->format('m/d/Y');
-    }
-
-    public function genres(array $genres) : string
-    {
-        return collect($genres)->pluck('name')->implode(', ');
-    }
-
     public function runTime(int $time) : string
     {
         return date('G\h i\m', mktime(0, $time));
-    }
-
-    public function votePercentage(float $voteAvg) : float
-    {
-        return $voteAvg * 10;
     }
 
     public function selectedCrew(array $crew) : Collection
@@ -96,22 +78,8 @@ class ShowMovieService extends TheMovieDBService
         return collect($cast)->take(10);
     }
 
-    public function keywords(array $keywords) : Collection|String
-    {
-        return $keywords ? collect($keywords)->take(15) : 'No Keywords';
-    }
-
     public function monetaryFormat(float $type) : string
     {
         return $type == 0 ? 'Not Available' : '$' . number_format($type);
-    }
-
-    public function isUserFavorite(int $id) : bool
-    {
-        if (auth()->user()) {
-            return auth()->user()->userHasFavorite($id, 'Movie');
-        }
-
-        return false;
     }
 }
